@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Memoria Carlos Martinez</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+  <body class="p-5">
+    <h1>Juego de Memoria</h1>
+    <button class="btn btn-secondary" id="btn_1" onclick="compara(1)">@</button>
+    <button class="btn btn-secondary" id="btn_2" onclick="compara(2)">@</button>
+    <button class="btn btn-secondary" id="btn_3" onclick="compara(3)">@</button>
+    <button class="btn btn-secondary" id="btn_4" onclick="compara(4)">@</button>
+    <button class="btn btn-secondary" id="btn_5" onclick="compara(5)">@</button>
+    <button class="btn btn-secondary" id="btn_6" onclick="compara(6)">@</button>
+    <button class="btn btn-secondary" id="btn_7" onclick="compara(7)">@</button>
+    <button class="btn btn-secondary" id="btn_8" onclick="compara(8)">@</button>
+    <button class="btn btn-secondary" id="btn_9" onclick="compara(9)">@</button>
+    <button class="btn btn-secondary" id="btn_10" onclick="compara(10)">@</button>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" ></script>
+    <script>
+        let tiempo=setInterval(cBtn,1500);
+        let cont=1;
+        let numAle=0;
+        let anterior=0;
+        let memoria=[];
+        let nclik=0;
+
+        function compara(nbtn){
+          if(nbtn!=memoria[nclik]){
+            $("#btn_"+memoria[nclik]).removeClass("btn-secondary");
+            $("#btn_"+memoria[nclik]).addClass("btn-danger");
+
+            alert("Error fin del juego");
+          }
+          else{
+            $("#btn_"+nbtn).removeClass("btn-secondary");
+            $("#btn_"+nbtn).addClass("btn-success");
+          }
+          nclik++;
+        }
+        function cBtn(){
+            // console.log("visitas: "+cont);
+            if (cont>4){
+              $("#btn_"+anterior).removeClass("btn-danger");
+              $("#btn_"+anterior).addClass("btn-secondary");
+                clearInterval(tiempo);
+            }   
+            else{
+              do{
+              numAle=Math.random()*10;
+              numAle=Math.floor(numAle)+1;
+            }
+            while(numAle==anterior);
+
+            $("#btn_"+anterior).removeClass("btn-danger");
+            $("#btn_"+anterior).addClass("btn-secondary");
+            
+            anterior=numAle;
+            
+            console.log(numAle);
+
+            $("#btn_"+numAle).removeClass("btn-secondary");
+            $("#btn_"+numAle).addClass("btn-danger");
+
+            memoria[cont-1]=numAle;
+
+            cont ++;
+           
+        }
+            }
+
+            
+    </script>
+  </body>
+</html>
